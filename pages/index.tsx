@@ -28,7 +28,6 @@ const isSuccessfullResponse = (
 };
 
 const Home: NextPage = () => {
-  const [email, setEmail] = useState<string>("");
   const [responseMessage, setResponseMessage] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const validationSchema = yup.object({
@@ -44,15 +43,15 @@ const Home: NextPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values.email);
-      console.log(email)
-      // setEmail(values.email);
-      new SendMail().send({ mail: email }).then((res: IUserMailResponse) => {
-        console.log(res);
-        isSuccessfullResponse(res)
-          ? setResponseMessage(res.responseMessage)
-          : setErrorMessage(res.errorMessage);
-      });
+      console.log(values);
+      new SendMail()
+        .send({ mail: values.email })
+        .then((res: IUserMailResponse) => {
+          console.log(res);
+          isSuccessfullResponse(res)
+            ? setResponseMessage(res.responseMessage)
+            : setErrorMessage(res.errorMessage);
+        });
       formik.resetForm();
     },
   });
