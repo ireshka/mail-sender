@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { sendMessageToUser } from "../../../helpers/sendEmail";
 import { IUserMailRequest, IUserMailResponse } from "../../../types/Mail";
+
 const sgMail = require("@sendgrid/mail");
 const SendGrid_Key = process.env.SENDGRID_KEY;
-import { render } from "mjml-react";
-import * as ratingEmail from "../../../emailTemplates/ratingEmail";
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IUserMailResponse>
 ) {
