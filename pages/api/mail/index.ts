@@ -1,12 +1,38 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-
-type Data = {
-  name: string;
-};
+import { IUserMailRequest, IUserMailResponse } from "../../../types/Mail";
+const sgMail = require("@sendgrid/mail");
+const SendGrid_Key = process.env.SENDGRID_KEY;
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<IUserMailResponse>
 ) {
-  res.status(200).json({ name: "mail" });
+  const body: IUserMailRequest = req.body.mail;
+
+  sgMail.setApiKey(SendGrid_Key);
+
+  //sprawdzić mail
+
+  const msg = {
+    to: `${body}`,
+    from: "michal.wakulinski1@gmail.com", // Use the email address or domain you verified above
+    subject: "Sending with Twilio SendGrid is Fun",
+    text: "and easy to do anywhere, even with Node.js",
+    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+  };
+
+  //ES8
+  (async () => {
+    try {
+      await sgMail.send(msg);
+    } catch (error: any) {
+      console.error(error);
+
+      if (error.response) {
+        console.error(error.response.body);
+      }
+    }
+  })();
+
+  res.status(200).json({ responseMessage: `mail has been sent to ${body}` });
 }
