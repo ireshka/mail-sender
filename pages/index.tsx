@@ -12,8 +12,9 @@ import {
 import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
-// import { MockSendMail } from "../test/mockSendMail";
+import { useState } from "react";
+import Image from "next/image";
+import surveyImage from "./../public/survey.png";
 import {
   IUserMailResponse,
   IUserMailSuccessfullResponse,
@@ -43,11 +44,9 @@ const Home: NextPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       new SendMail()
         .send({ mail: values.email })
         .then((res: IUserMailResponse) => {
-          console.log(res);
           isSuccessfullResponse(res)
             ? setResponseMessage(res.responseMessage)
             : setErrorMessage(res.errorMessage);
@@ -61,7 +60,7 @@ const Home: NextPage = () => {
         sx={{
           padding: "10px",
           width: "100%",
-          maxWidth: "350px",
+          maxWidth: "400px",
           display: "block",
           margin: "0 auto",
 
@@ -73,10 +72,16 @@ const Home: NextPage = () => {
         }}
       >
         <Box sx={{ marginBottom: "2rem" }}>
-          <Typography variant="h4" component="h1">
+          <Image
+            src={surveyImage}
+            alt="Picture of the author"
+            width={500}
+            height={500}
+          />
+          <Typography variant="h4" component="h1" textAlign="center">
             Get your survey
           </Typography>
-          <Typography variant="subtitle1">
+          <Typography variant="subtitle1" textAlign="center">
             Give us your mail and you can give us stars
           </Typography>
         </Box>
@@ -120,6 +125,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-function resetForm() {
-  throw new Error("Function not implemented.");
-}

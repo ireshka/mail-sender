@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IUserMailRequest, IUserMailResponse } from "../../types/Mail";
+import { IRatingRequest, IRatingResponse } from "../../types/Rate";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IUserMailResponse>
+  res: NextApiResponse<IRatingResponse>
 ) {
   try {
     const user = req.query.mail;
