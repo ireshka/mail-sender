@@ -25,14 +25,16 @@ export default function handler(
   (async () => {
     try {
       await sgMail.send(msg);
+      res
+        .status(200)
+        .json({ responseMessage: `mail has been sent to ${body}` });
     } catch (error: any) {
       console.error(error);
 
       if (error.response) {
         console.error(error.response.body);
       }
+      res.status(400).json({ responseMessage: `Sorry something went wrong` });
     }
   })();
-
-  res.status(200).json({ responseMessage: `mail has been sent to ${body}` });
 }
