@@ -15,57 +15,23 @@ import {
   MjmlText,
 } from "mjml-react";
 
-const css = readFileSync("./assets/styles.css").toString();
-
 export const generate = () => {
   return (
     <Mjml>
       <MjmlHead>
-        <MjmlTitle>Last Minute Offer</MjmlTitle>
-        <MjmlPreview>Last Minute Offer...</MjmlPreview>
-        <MjmlStyle>{css}</MjmlStyle>
+        <MjmlPreview>Intern Survey</MjmlPreview>
         <MjmlStyle>{`
-          .blue-column {
-            background-color: blue;
-          }
-        `}</MjmlStyle>
-        <MjmlStyle inline>{`
-          .red-column {
-            background-color: red;
+          .heading {
+            margin-top: 24px;
+            color: red;
           }
         `}</MjmlStyle>
       </MjmlHead>
       <MjmlBody width={500}>
-        <MjmlSection fullWidth backgroundColor="#efefef">
-          <MjmlColumn>
-            <MjmlImage src="https://static.wixstatic.com/media/5cb24728abef45dabebe7edc1d97ddd2.jpg" />
-          </MjmlColumn>
-        </MjmlSection>
-        <MjmlSection>
-          <MjmlColumn>
-            <MjmlButton
-              padding="20px"
-              backgroundColor="#346DB7"
-              href="https://www.wix.com/"
-            >
-              I like it!
-            </MjmlButton>
-          </MjmlColumn>
-        </MjmlSection>
-        <MjmlSection>
-          <MjmlColumn cssClass="blue-column">
-            <MjmlText>I am blue</MjmlText>
-          </MjmlColumn>
-          <MjmlColumn cssClass="red-column">
-            <MjmlText>I am red</MjmlText>
-          </MjmlColumn>
-        </MjmlSection>
-        <MjmlSection>
-          <MjmlColumn>
-            <MjmlText>
-              <a href="/2">Open Second Template</a>
-            </MjmlText>
-          </MjmlColumn>
+        <MjmlSection fullWidth backgroundColor="#efefef" paddingTop={"24px"} paddingLeft={'10px'} paddingRight={'10px'}>
+          <MjmlText cssClass="heading" color={"#27BC3C"}>
+            Hi! Rate our Intern Project.
+          </MjmlText>
         </MjmlSection>
       </MjmlBody>
     </Mjml>

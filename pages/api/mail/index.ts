@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { IUserMailRequest, IUserMailResponse } from "../../../types/Mail";
 const sgMail = require("@sendgrid/mail");
 const SendGrid_Key = process.env.SENDGRID_KEY;
+import { render } from "mjml-react";
+import * as ratingEmail from "../../../emailTemplates/ratingEmail";
 
 export default function handler(
   req: NextApiRequest,
@@ -13,12 +15,14 @@ export default function handler(
 
   //sprawdzić mail
 
+  const { html: emailHtml } = render(ratingEmail.generate(), { validationLevel: 'soft' })
+
   const msg = {
     to: `${body}`,
     from: "michal.wakulinski1@gmail.com", // Use the email address or domain you verified above
-    subject: "Sending with Twilio SendGrid is Fun",
+    subject: "Intern Survey",
     text: "and easy to do anywhere, even with Node.js",
-    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    html: emailHtml,
   };
 
   //ES8
