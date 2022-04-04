@@ -29,12 +29,13 @@ export default function handler(
         .status(200)
         .json({ responseMessage: `mail has been sent to ${body}` });
     } catch (error: any) {
-      console.error(error);
+      // console.error(error);
+      console.log('===> im in catch?')
 
       if (error.response) {
         console.error(error.response.body);
       }
-      res.status(400).json({ responseMessage: `Sorry something went wrong` });
+      res.status(404).json({ errorMessage: `Sorry something went wrong` });
     }
   })();
 }

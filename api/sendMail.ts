@@ -12,6 +12,12 @@ const getErrorObject = (errorMessage: string): IUserMailErrorResponse => ({
   errorMessage,
 });
 
+const isErrorResponse = (
+  data: unknown
+): data is IUserMailErrorResponse => {
+  return (data as IUserMailErrorResponse).errorMessage !== undefined;
+};
+
 export class SendMail implements IUserMailSend {
   async send(request: IUserMailRequest): Promise<IUserMailResponse> {
     try {
@@ -20,9 +26,11 @@ export class SendMail implements IUserMailSend {
       return data;
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        return getErrorObject(err.message);
+        const responseMessage = (isErrorResponse(err.response?.data) ? err.response?.data.errorMessage : 'Worse error even') as string;
+        return getErrorObject(responseMessage);
       } else {
-        return getErrorObject('Sth goes wrong');
+
+        return getErrorObject('We are looking for your error');
       }
     }
   }
