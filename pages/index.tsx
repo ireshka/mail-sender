@@ -19,6 +19,7 @@ import { IUserMailResponse } from "../types/Mail";
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
   const [responseMessage, setResponseMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -74,6 +75,7 @@ const Home: NextPage = () => {
           autoComplete="off"
           sx={{ width: "100%" }}
           onSubmit={formik.handleSubmit}
+          noValidate
         >
           <TextField
             fullWidth
@@ -92,11 +94,16 @@ const Home: NextPage = () => {
             Get you survey
           </Button>
         </FormControl>
-        {email ? (
+        {responseMessage && (
           <Alert severity="success" sx={{ marginTop: "10px" }}>
             {responseMessage}
           </Alert>
-        ) : null}
+        )}
+        { errorMessage && (
+          <Alert severity="error" sx={{ marginTop: "10px" }}>
+            {errorMessage}
+          </Alert>
+        )}
       </Paper>
     </Container>
   );
