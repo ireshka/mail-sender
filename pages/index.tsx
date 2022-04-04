@@ -7,15 +7,24 @@ import {
   Stack,
   TextField,
   Typography,
+  Alert,
 } from "@mui/material";
 import type { NextPage } from "next";
 import { useFormik } from "formik";
-import * as yup from "yup"
+import * as yup from "yup";
+import { useEffect, useState } from "react";
+import { MockSendMail } from "../test/mockSendMail";
+import { IUserMailResponse } from "../types/Mail";
 
 const Home: NextPage = () => {
+  const [email, setEmail] = useState<string>("");
+  const [responseMessage, setResponseMessage] = useState<string>("");
   const validationSchema = yup.object({
-    email: yup.string().email("Enter a valid email").required("Email is required")
-  })
+    email: yup
+      .string()
+      .email("Enter a valid email")
+      .required("Email is required"),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -23,7 +32,12 @@ const Home: NextPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      setEmail(values.email);
+      new MockSendMail()
+        .send({ mail: email })
+        .then((res: IUserMailResponse) => {
+          setResponseMessage(res.responseMessage);
+        });
     },
   });
   return (
@@ -74,6 +88,9 @@ const Home: NextPage = () => {
             Get you survey
           </Button>
         </FormControl>
+        <Alert severity="success" sx={{ marginTop: "10px" }}>
+          {responseMessage}
+        </Alert>
       </Paper>
     </Container>
   );
