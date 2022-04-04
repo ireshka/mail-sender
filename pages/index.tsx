@@ -46,6 +46,7 @@ const Home: NextPage = () => {
     onSubmit: (values) => {
       setEmail(values.email);
       new SendMail().send({ mail: email }).then((res: IUserMailResponse) => {
+        console.log(res);
         isSuccessfullResponse(res)
           ? setResponseMessage(res.responseMessage)
           : setErrorMessage(res.errorMessage);
