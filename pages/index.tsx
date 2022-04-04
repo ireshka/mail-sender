@@ -36,7 +36,11 @@ const Home: NextPage = () => {
       new MockSendMail()
         .send({ mail: email })
         .then((res: IUserMailResponse) => {
-          setResponseMessage(res.responseMessage);
+          setResponseMessage(
+            res.responseMessage ||
+              res.error?.errorMessage ||
+              "Something went wrong"
+          );
         });
     },
   });
