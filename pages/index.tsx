@@ -14,7 +14,11 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useEffect, useState } from "react";
 import { MockSendMail } from "../test/mockSendMail";
-import { IUserMailResponse } from "../types/Mail";
+import { IUserMailResponse, IUserMailSuccessfullResponse, IUserMailErrorResponse } from "../types/Mail";
+
+const isSuccessfullResponse = (data: IUserMailResponse): data is IUserMailSuccessfullResponse => {
+  return (data as IUserMailSuccessfullResponse).responseMessage !== undefined;
+}
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -37,11 +41,7 @@ const Home: NextPage = () => {
       new MockSendMail()
         .send({ mail: email })
         .then((res: IUserMailResponse) => {
-          setResponseMessage(
-            res.responseMessage ||
-              res.error?.errorMessage ||
-              "Something went wrong"
-          );
+          isSuccessfullResponse(res) ? setResponseMessage(res.responseMessage) : setErrorMessage(res.errorMessage);
         });
       formik.resetForm();
     },

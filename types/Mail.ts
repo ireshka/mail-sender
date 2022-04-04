@@ -2,12 +2,15 @@ export interface IUserMailRequest {
   mail: string;
 }
 
-export interface IUserMailResponse {
-  responseMessage?: string;
-  error?: {
-    errorMessage: string;
-  },
+export interface IUserMailSuccessfullResponse {
+  responseMessage: string;
 }
+
+export interface IUserMailErrorResponse {
+  errorMessage: string;
+}
+
+export type IUserMailResponse = IUserMailSuccessfullResponse | IUserMailErrorResponse;
 
 export interface IUserMailSend {
   send(request: IUserMailRequest): Promise<IUserMailResponse>;
