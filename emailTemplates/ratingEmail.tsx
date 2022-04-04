@@ -64,31 +64,31 @@ export const generate = (userMail: string) => {
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/api/rating?mail=${userMail}&rating=1`}
+                href={`http://localhost:3000/rating?mail=${userMail}&rating=1`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/api/rating?mail=${userMail}&rating=2`}
+                href={`http://localhost:3000/rating?mail=${userMail}&rating=2`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/api/rating?mail=${userMail}&rating=3`}
+                href={`http://localhost:3000/rating?mail=${userMail}&rating=3`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/api/rating?mail=${userMail}&rating=4`}
+                href={`http://localhost:3000/rating?mail=${userMail}&rating=4`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/api/rating?mail=${userMail}&rating=5`}
+                href={`http://localhost:3000/rating?mail=${userMail}&rating=5`}
                 target="_blank"
               />
             </MjmlSocial>
