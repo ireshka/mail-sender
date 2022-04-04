@@ -2,14 +2,17 @@ const nodemailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid");
 import { render } from "mjml-react";
 import * as ratingEmail from "../emailTemplates/ratingEmail"
-const { html: emailHtml } = render(ratingEmail.generate(), {
-  validationLevel: "soft",
-});
+
 
 export async function sendMessageToUser(email: string) {
   const options = {
     apiKey: process.env.SENDGRID_KEY,
   };
+
+  const { html: emailHtml } = render(ratingEmail.generate(email), {
+    validationLevel: "soft",
+  });
+
   let transporter = nodemailer.createTransport(sgTransport(options));
   return await transporter.sendMail({
     from: "michal.wakulinski1@gmail.com",
