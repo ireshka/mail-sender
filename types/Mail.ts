@@ -3,7 +3,10 @@ export interface IUserMailRequest {
 }
 
 export interface IUserMailResponse {
-  responseMessage: string;
+  responseMessage?: string;
+  error?: {
+    errorMessage: string;
+  },
 }
 
 export interface IUserMailSend {
