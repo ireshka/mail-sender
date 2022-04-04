@@ -43,6 +43,7 @@ const Home: NextPage = () => {
               "Something went wrong"
           );
         });
+      formik.resetForm();
     },
   });
   return (
@@ -99,7 +100,7 @@ const Home: NextPage = () => {
             {responseMessage}
           </Alert>
         )}
-        { errorMessage && (
+        {errorMessage && (
           <Alert severity="error" sx={{ marginTop: "10px" }}>
             {errorMessage}
           </Alert>
@@ -110,3 +111,6 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+function resetForm() {
+  throw new Error("Function not implemented.");
+}
