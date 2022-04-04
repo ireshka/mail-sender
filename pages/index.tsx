@@ -92,9 +92,11 @@ const Home: NextPage = () => {
             Get you survey
           </Button>
         </FormControl>
-        <Alert severity="success" sx={{ marginTop: "10px" }}>
-          {responseMessage}
-        </Alert>
+        {email ? (
+          <Alert severity="success" sx={{ marginTop: "10px" }}>
+            {responseMessage}
+          </Alert>
+        ) : null}
       </Paper>
     </Container>
   );
