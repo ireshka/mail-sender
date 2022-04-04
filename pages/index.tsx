@@ -13,12 +13,19 @@ import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useEffect, useState } from "react";
-import { MockSendMail } from "../test/mockSendMail";
-import { IUserMailResponse, IUserMailSuccessfullResponse, IUserMailErrorResponse } from "../types/Mail";
+// import { MockSendMail } from "../test/mockSendMail";
+import {
+  IUserMailResponse,
+  IUserMailSuccessfullResponse,
+  IUserMailErrorResponse,
+} from "../types/Mail";
+import { SendMail } from "../api/sendMail";
 
-const isSuccessfullResponse = (data: IUserMailResponse): data is IUserMailSuccessfullResponse => {
+const isSuccessfullResponse = (
+  data: IUserMailResponse
+): data is IUserMailSuccessfullResponse => {
   return (data as IUserMailSuccessfullResponse).responseMessage !== undefined;
-}
+};
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -38,11 +45,11 @@ const Home: NextPage = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       setEmail(values.email);
-      new MockSendMail()
-        .send({ mail: email })
-        .then((res: IUserMailResponse) => {
-          isSuccessfullResponse(res) ? setResponseMessage(res.responseMessage) : setErrorMessage(res.errorMessage);
-        });
+      new SendMail().send({ mail: email }).then((res: IUserMailResponse) => {
+        isSuccessfullResponse(res)
+          ? setResponseMessage(res.responseMessage)
+          : setErrorMessage(res.errorMessage);
+      });
       formik.resetForm();
     },
   });
