@@ -9,6 +9,7 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
+import Image from "next/image";
 import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -59,7 +60,7 @@ const Home: NextPage = () => {
     <Container maxWidth="sm">
       <Paper
         sx={{
-          padding: "10px",
+          padding: "16px",
           width: "100%",
           maxWidth: "350px",
           display: "block",
@@ -72,6 +73,13 @@ const Home: NextPage = () => {
           overflowY: "auto",
         }}
       >
+        <Image
+          src="/mailbox.png"
+          alt=""
+          width={816}
+          height={654}
+          layout="responsive"
+        />
         <Box sx={{ marginBottom: "2rem" }}>
           <Typography variant="h4" component="h1">
             Get your survey
