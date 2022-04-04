@@ -35,7 +35,7 @@ export default function handler(
       if (error.response) {
         console.error(error.response.body);
       }
-      res.status(404).json({ errorMessage: `Sorry something went wrong` });
+      res.status(400).json({ errorMessage: `Sorry something went wrong` });
     }
   })();
 }

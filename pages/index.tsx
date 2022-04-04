@@ -44,7 +44,9 @@ const Home: NextPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      setEmail(values.email);
+      console.log(values.email);
+      console.log(email)
+      // setEmail(values.email);
       new SendMail().send({ mail: email }).then((res: IUserMailResponse) => {
         console.log(res);
         isSuccessfullResponse(res)
@@ -119,6 +121,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-function resetForm() {
-  throw new Error("Function not implemented.");
-}

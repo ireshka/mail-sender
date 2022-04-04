@@ -29,8 +29,7 @@ export class SendMail implements IUserMailSend {
         const responseMessage = (isErrorResponse(err.response?.data) ? err.response?.data.errorMessage : 'Worse error even') as string;
         return getErrorObject(responseMessage);
       } else {
-
-        return getErrorObject('We are looking for your error');
+        return getErrorObject("Sth goes wrong");
       }
     }
   }
