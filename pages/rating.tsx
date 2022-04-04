@@ -13,6 +13,7 @@ import {
 import { useRouter } from "next/router";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { SendMail } from "../api/sendMail";
 
 type ExpectedQuery = {
   mail: string;
@@ -20,9 +21,9 @@ type ExpectedQuery = {
 };
 
 type WrongQuery = {
-  mail: null;
-  rating: null;
-}
+  mail: undefined;
+  rating: undefined;
+};
 
 type Props = ExpectedQuery | WrongQuery;
 
@@ -33,26 +34,43 @@ const isValidQuery = (query: ParsedUrlQuery): query is ExpectedQuery => {
   );
 };
 
-
-export const getServerSideProps: GetServerSideProps<Props> = async (context) =>  {
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
   const { query } = context;
   if (isValidQuery(query)) {
     return {
-      props: query
-    }
+      props: query,
+    };
   } else {
     return {
       props: {
-        mail: null,
-        rating: null,
-      }
-    }
+        mail: undefined,
+        rating: undefined,
+      },
+    };
   }
-}
+};
 
+const Rating = ({
+  mail,
+  rating,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  React.useEffect(() => {
+    const sendRating = async () => {
+      const queryObject = { mail, rating };
+      if (isValidQuery(queryObject)) {
+        const data = await new SendMail().rating({
+          mail: queryObject.mail,
+          rating: queryObject.rating,
+        });
+        console.log('Response from backend:')
+        console.log(data);
+      }
+    };
 
-
-const Rating = ({mail, rating}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    sendRating();
+  });
 
   return (
     <Container maxWidth="md">
@@ -62,11 +80,13 @@ const Rating = ({mail, rating}: InferGetServerSidePropsType<typeof getServerSide
           marginTop: "20px",
         }}
       >
-        {
-          rating !== null
-          ? (<Box>Thank for your rating! You gave us: {rating} stars.</Box>)
-          : (<Alert severity="error">The old gnomes ate your answer. Please rate us again.</Alert>)
-        }
+        {rating !== null ? (
+          <Box>Thank for your rating! You gave us: {rating} stars.</Box>
+        ) : (
+          <Alert severity="error">
+            The old gnomes ate your answer. Please rate us again.
+          </Alert>
+        )}
       </Card>
     </Container>
   );
