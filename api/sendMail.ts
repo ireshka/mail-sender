@@ -24,8 +24,7 @@ export class SendMail implements IUserMailSend {
   async send(request: IUserMailRequest): Promise<IUserMailResponse> {
     try {
       const resp = await axios.post(Endpoints.SEND, request);
-      const data = resp.data as IUserMailSuccessfullResponse;
-      return data;
+      return resp.data as IUserMailSuccessfullResponse;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const responseMessage = (isErrorResponse(err.response?.data) ? err.response?.data.errorMessage : 'Worse error even') as string;
@@ -38,8 +37,7 @@ export class SendMail implements IUserMailSend {
   async rating(request: IUserRatingRequest): Promise<IUserRatingResponse> {
     try {
       const resp = await axios.get(`${Endpoints.RATING}?mail=${request.mail}&rating=${request.rating}`);
-      const data = resp.data as IUserMailSuccessfullResponse;
-      return data;
+      return resp.data as IUserMailSuccessfullResponse;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const responseMessage = (isErrorResponse(err.response?.data) ? err.response?.data.errorMessage : 'Worse error even during sending rating to our service') as string;
