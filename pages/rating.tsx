@@ -12,16 +12,7 @@ import { ParsedUrlQuery } from "querystring";
 import { SendMail } from "../api/sendMail";
 import { styled } from "@mui/system";
 import Image from "next/image";
-
-type ExpectedQuery = {
-  mail: string;
-  rating: string;
-};
-
-type WrongQuery = {
-  mail: undefined;
-  rating: undefined;
-};
+import { ExpectedQuery, WrongQuery } from '../types/Rating';
 
 type Props = ExpectedQuery | WrongQuery;
 

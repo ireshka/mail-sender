@@ -1,11 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IUserMailRequest, IUserMailResponse } from "../../types/Mail";
+import { IUserMailResponse } from "../../types/Mail";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IUserMailResponse>
 ) {
   try {
+    //TODO: add query validation later
     const user = req.query.mail;
     const rating = req.query.rating;
     console.log(`email: ${user} rated us ${rating}`);

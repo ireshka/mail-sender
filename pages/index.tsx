@@ -43,11 +43,10 @@ const Home: NextPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      //TODO: refactor possibility? - await / async syntax
       new SendMail()
         .send({ mail: values.email })
         .then((res: IUserMailResponse) => {
-          console.log(res);
           isSuccessfullResponse(res)
             ? setResponseMessage(res.responseMessage)
             : setErrorMessage(res.errorMessage);
