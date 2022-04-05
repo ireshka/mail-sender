@@ -15,3 +15,10 @@ export type IUserMailResponse = IUserMailSuccessfullResponse | IUserMailErrorRes
 export interface IUserMailSend {
   send(request: IUserMailRequest): Promise<IUserMailResponse>;
 }
+
+export interface IUserRatingRequest {
+  mail: string;
+  rating: string;
+}
+
+export type IUserRatingResponse = IUserMailResponse;
