@@ -16,6 +16,20 @@ import {
 
 import { endpoints } from '../data/endpoints'
 
+type StarProps = {
+  value: string,
+  userMail: string
+}
+
+const Star = ({value, userMail}: StarProps) => (
+  <MjmlSocialElement
+    src="https://i.postimg.cc/PrfvjNYw/star.png"
+    icon-size="30px"
+    href={`${endpoints.RATING}?mail=${userMail}&rating=${value}`}
+    target="_blank"
+  />
+);
+
 export const generate = (userMail: string) => {
   return (
     <Mjml>
@@ -63,36 +77,11 @@ export const generate = (userMail: string) => {
         <MjmlSection padding="0">
           <MjmlColumn>
             <MjmlSocial>
-              <MjmlSocialElement
-                src="https://i.postimg.cc/PrfvjNYw/star.png"
-                icon-size="30px"
-                href={`${endpoints.RATING}?mail=${userMail}&rating=1`}
-                target="_blank"
-              />
-              <MjmlSocialElement
-                src="https://i.postimg.cc/PrfvjNYw/star.png"
-                icon-size="30px"
-                href={`${endpoints.RATING}?mail=${userMail}&rating=2`}
-                target="_blank"
-              />
-              <MjmlSocialElement
-                src="https://i.postimg.cc/PrfvjNYw/star.png"
-                icon-size="30px"
-                href={`${endpoints.RATING}?mail=${userMail}&rating=3`}
-                target="_blank"
-              />
-              <MjmlSocialElement
-                src="https://i.postimg.cc/PrfvjNYw/star.png"
-                icon-size="30px"
-                href={`${endpoints.RATING}?mail=${userMail}&rating=4`}
-                target="_blank"
-              />
-              <MjmlSocialElement
-                src="https://i.postimg.cc/PrfvjNYw/star.png"
-                icon-size="30px"
-                href={`${endpoints.RATING}?mail=${userMail}&rating=5`}
-                target="_blank"
-              />
+              <Star value="1" userMail={userMail}/>
+              <Star value="2" userMail={userMail}/>
+              <Star value="3" userMail={userMail}/>
+              <Star value="4" userMail={userMail}/>
+              <Star value="5" userMail={userMail}/>
             </MjmlSocial>
           </MjmlColumn>
         </MjmlSection>
