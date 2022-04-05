@@ -1,18 +1,12 @@
 import * as React from "react";
 import {
   Box,
-  Card,
   Container,
-  FormControl,
   Paper,
-  Stack,
-  TextField,
   Typography,
   Alert,
-  CardHeader,
   Grid,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { SendMail } from "../api/sendMail";

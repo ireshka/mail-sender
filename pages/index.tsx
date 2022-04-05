@@ -13,12 +13,11 @@ import Image from "next/image";
 import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import { MockSendMail } from "../test/mockSendMail";
 import {
   IUserMailResponse,
   IUserMailSuccessfullResponse,
-  IUserMailErrorResponse,
 } from "../types/Mail";
 import { SendMail } from "../api/sendMail";
 
