@@ -14,7 +14,6 @@ import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
-// import { MockSendMail } from "../test/mockSendMail";
 import {
   IUserMailResponse,
   IUserMailSuccessfullResponse,
