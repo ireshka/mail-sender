@@ -12,7 +12,6 @@ export default async function handler(
     await sendMessageToUser(body.mail);
     res.status(200).json({ responseMessage: `mail has been sent to ${body.mail}` });
   } catch (error) {
-    console.log(JSON.stringify(error));
     res.status(404).json({ errorMessage: `Sorry something went wrong` });
   }
 }

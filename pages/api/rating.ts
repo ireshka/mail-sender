@@ -15,7 +15,6 @@ export default async function handler(
       .status(200)
       .redirect(301, `${endpoints.THANKS_PAGE}?mail=${userMail}&rating=${rating}`);
   } catch (error) {
-    console.log(JSON.stringify(error));
     res.status(404).json({
       errorMessage: `Sorry something went wrong during getting rated`,
     });
