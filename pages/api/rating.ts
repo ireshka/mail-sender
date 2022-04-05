@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { IUserMailResponse } from "../../types/Mail";
+import { endpoints } from '../../data/endpoints';
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,12 +8,12 @@ export default async function handler(
 ) {
   try {
     //TODO: add query validation later
-    const user = req.query.mail;
+    const userMail = req.query.mail;
     const rating = req.query.rating;
-    console.log(`email: ${user} rated us ${rating}`);
+    console.log(`email: ${userMail} rated us ${rating}`);
     res
       .status(200)
-      .json({ responseMessage: `email: ${user} rated us ${rating}` });
+      .redirect(301, `${endpoints.THANKS_PAGE}?mail=${userMail}&rating=${rating}`);
   } catch (error) {
     console.log(JSON.stringify(error));
     res.status(404).json({

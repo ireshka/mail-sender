@@ -34,18 +34,4 @@ export class SendMail implements IUserMailSend {
       }
     }
   }
-  async rating(request: IUserRatingRequest): Promise<IUserRatingResponse> {
-    try {
-      const resp = await axios.get(`${endpoints.RATING}?mail=${request.mail}&rating=${request.rating}`);
-      return resp.data as IUserMailSuccessfullResponse;
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const responseMessage = (isErrorResponse(err.response?.data) ? err.response?.data.errorMessage : 'Worse error even during sending rating to our service') as string;
-        return getErrorObject(responseMessage);
-      } else {
-
-        return getErrorObject('We are looking for your error during sending rating to our service');
-      }
-    }
-  }
 }
