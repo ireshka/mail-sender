@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import {
   IUserMailErrorResponse,
   IUserMailSuccessfullResponse,
@@ -8,7 +8,7 @@ import {
   IUserRatingRequest,
   IUserRatingResponse
 } from "../types/Mail";
-import { Endpoints } from "../types/Endpoints.enum";
+import { endpoints } from "../data/endpoints";
 
 const getErrorObject = (errorMessage: string): IUserMailErrorResponse => ({
   errorMessage,
@@ -23,7 +23,7 @@ const isErrorResponse = (
 export class SendMail implements IUserMailSend {
   async send(request: IUserMailRequest): Promise<IUserMailResponse> {
     try {
-      const resp = await axios.post(Endpoints.SEND, request);
+      const resp = await axios.post(endpoints.SEND, request);
       return resp.data as IUserMailSuccessfullResponse;
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -36,7 +36,7 @@ export class SendMail implements IUserMailSend {
   }
   async rating(request: IUserRatingRequest): Promise<IUserRatingResponse> {
     try {
-      const resp = await axios.get(`${Endpoints.RATING}?mail=${request.mail}&rating=${request.rating}`);
+      const resp = await axios.get(`${endpoints.RATING}?mail=${request.mail}&rating=${request.rating}`);
       return resp.data as IUserMailSuccessfullResponse;
     } catch (err) {
       if (axios.isAxiosError(err)) {

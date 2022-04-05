@@ -14,6 +14,8 @@ import {
   MjmlSocialElement,
 } from "mjml-react";
 
+import { endpoints } from '../data/endpoints'
+
 export const generate = (userMail: string) => {
   return (
     <Mjml>
@@ -64,31 +66,31 @@ export const generate = (userMail: string) => {
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/rating?mail=${userMail}&rating=1`}
+                href={`${endpoints.RATING}?mail=${userMail}&rating=1`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/rating?mail=${userMail}&rating=2`}
+                href={`${endpoints.RATING}?mail=${userMail}&rating=2`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/rating?mail=${userMail}&rating=3`}
+                href={`${endpoints.RATING}?mail=${userMail}&rating=3`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/rating?mail=${userMail}&rating=4`}
+                href={`${endpoints.RATING}?mail=${userMail}&rating=4`}
                 target="_blank"
               />
               <MjmlSocialElement
                 src="https://i.postimg.cc/PrfvjNYw/star.png"
                 icon-size="30px"
-                href={`http://localhost:3000/rating?mail=${userMail}&rating=5`}
+                href={`${endpoints.RATING}?mail=${userMail}&rating=5`}
                 target="_blank"
               />
             </MjmlSocial>
