@@ -2,9 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { sendMessageToUser } from "../../../helpers/sendEmail";
 import { IUserMailRequest, IUserMailResponse } from "../../../types/Mail";
 
-const sgMail = require("@sendgrid/mail");
-const SendGrid_Key = process.env.SENDGRID_KEY;
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IUserMailResponse>
