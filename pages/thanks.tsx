@@ -41,26 +41,10 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   }
 };
 
-const Rating = ({
+const Thanks = ({
   mail,
   rating,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  React.useEffect(() => {
-    const sendRating = async () => {
-      const queryObject = { mail, rating };
-      if (isValidQuery(queryObject)) {
-        const data = await new SendMail().rating({
-          mail: queryObject.mail,
-          rating: queryObject.rating,
-        });
-        console.log("Response from backend:");
-        console.log(data);
-      }
-    };
-
-    sendRating();
-  });
-
   const WrapperBox = styled(Box)`
     padding: 16px;
   `;
@@ -124,4 +108,4 @@ const Rating = ({
   );
 };
 
-export default Rating;
+export default Thanks;
