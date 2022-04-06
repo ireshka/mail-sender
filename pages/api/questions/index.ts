@@ -1,6 +1,6 @@
 import { validateOrReject } from "class-validator";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Questionnaire } from "../../../dtos/request";
+import { Survey } from "../../../dtos/request";
 
 import { ISurveyRequest, ISurveyResponse } from "../../../types/Survey";
 
@@ -8,10 +8,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ISurveyResponse>
 ) {
-  const body: ISurveyRequest = req.body;
+  const surveyId = req.query.surveyId[0];
 
-  const questionnaire = new Questionnaire();
-  questionnaire.idSurvey = body.idSurvey;
+  const questionnaire = new Survey();
+  questionnaire.idSurvey = surveyId;
 
   try {
     await validateOrReject(questionnaire);

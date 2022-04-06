@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { SubmitRequest } from "../../../dtos/request";
 import { ISubmitRequest, ISubmitResponse } from "../../../types/Survey";
 import { plainToClass } from "class-transformer";
+import { endpoints } from "../../../data/endpoints";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,9 +25,8 @@ export default async function handler(
   }
 
   try {
-    res
-      .status(201)
-      .json({ responseMessage: `${body.email} thank you for your time :)` });
+    console.log(`email: ${body.email} answers ${body.votes}`);
+    res.status(201).redirect(`${endpoints.THANKS_PAGE}`);
   } catch (error) {
     res.status(404).json({ errorMessage: `Sorry something went wrong` });
   }

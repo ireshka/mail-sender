@@ -32,7 +32,7 @@ export class SubmitRequest implements ISubmitRequest {
   votes!: Vote[];
 }
 
-export class Questionnaire implements ISurveyRequest {
+export class Survey implements ISurveyRequest {
   @IsString()
   idSurvey!: string;
 }

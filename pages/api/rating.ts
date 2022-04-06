@@ -30,7 +30,7 @@ export default async function handler(
   try {
     res.status(200).redirect(
       301,
-      `${endpoints.THANKS_PAGE}?mail=${userMail}&rating=${rating}` //redirect to another page
+      `${endpoints.SURVEY_PAGE}?mail=${userMail}&surveyId=${rating}` //redirect to another page
     );
   } catch (error) {
     res.status(404).json({
