@@ -8,8 +8,8 @@ export interface ISubmitRequest {
   votes: IVote[];
 }
 
-export interface IQuestionnaireRequest {
-  idQuestionnaire: string;
+export interface ISurveyRequest {
+  idSurvey: string;
 }
 
 export interface IQuestion {
@@ -17,7 +17,8 @@ export interface IQuestion {
   question: string;
 }
 
-export interface IQuestionnaireResponse {
+export interface ISurveyResponse {
+  idSurvey: string;
   questions: IQuestion[] | IWrongResponse;
 }
 
@@ -34,5 +35,5 @@ export type ISubmitResponse = ISuccessfulResponse | IWrongResponse;
 export interface Api {
   submit(req: ISubmitRequest): Promise<ISubmitResponse>;
 
-  getQuestionnaire(req: IQuestionnaireRequest): Promise<IQuestionnaireResponse>;
+  getQuestionnaire(req: ISurveyRequest): Promise<ISurveyResponse>;
 }

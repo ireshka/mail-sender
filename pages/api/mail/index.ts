@@ -14,7 +14,7 @@ export default async function handler(
   mail.mail = body.mail;
 
   try {
-    await validate(mail);
+    await validateOrReject(mail);
   } catch (errors) {
     console.log(
       "Caught promise rejection (validation failed). Errors: ",

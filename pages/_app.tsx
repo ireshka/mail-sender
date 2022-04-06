@@ -1,7 +1,8 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { theme } from '../theme/defaultTheme'
+import { theme } from "../theme/defaultTheme";
+import "reflect-metadata";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
