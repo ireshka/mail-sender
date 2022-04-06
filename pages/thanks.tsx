@@ -1,27 +1,17 @@
 import * as React from "react";
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Alert,
-  Grid,
-} from "@mui/material";
+import { Box, Container, Paper, Typography, Alert, Grid } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { styled } from "@mui/system";
 import Image from "next/image";
 import Link from "next/link";
-import { ExpectedQuery, WrongQuery } from '../types/Rating';
-import { endpoints } from '../data/endpoints'
+import { ExpectedQuery, WrongQuery } from "../types/Rating";
+import { endpoints } from "../data/endpoints";
 
 type Props = ExpectedQuery | WrongQuery;
 
 const isValidQuery = (query: ParsedUrlQuery): query is ExpectedQuery => {
-  return (
-    query.mail !== undefined &&
-    query.rating !== undefined
-  );
+  return query.mail !== undefined && query.rating !== undefined;
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async (
@@ -104,7 +94,7 @@ const Thanks = ({
                   The old gnomes ate your answer. Please rate us again.
                 </Alert>
               )}
-              <Grid item xs={12} sx={{marginTop: '24px'}}>
+              <Grid item xs={12} sx={{ marginTop: "24px" }}>
                 <Link href={surveyLink}>
                   <a>Longer Survey, please?</a>
                 </Link>

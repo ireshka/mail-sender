@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { styled } from "@mui/system";
+import { ISurveyResponse, IWrongResponse } from "../types/Survey";
+import { SurveyService } from "../api/SurveyService";
 
 const CustomRadioIcon = styled(Button)(({ theme }) => ({
   color: "white",
@@ -78,7 +80,6 @@ const QuestionWrapper = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 }));
 
-
 const WrapperBox = styled(Box)`
   padding: 16px;
 `;
@@ -93,6 +94,23 @@ const Survey = () => {
     mode: "onChange",
   });
   const onSubmit = (data: FormValues) => console.log(data);
+
+  const [surveyData, setSurveyData] = React.useState<ISurveyResponse>();
+
+  React.useEffect(() => {
+    new SurveyService()
+      .getQuestionnaire({ idSurvey: "1" })
+      .then((res) => setSurveyData(res))
+      .catch((e) =>
+        setSurveyData({ idSurvey: "1", questions: { errorMessage: "Error" } })
+      );
+  }, []);
+
+  console.log(surveyData);
+
+  function isWrongResponse(data: any): data is IWrongResponse {
+    return "errorMessage" in data.questions;
+  }
 
   return (
     <Container maxWidth="md">
@@ -124,6 +142,8 @@ const Survey = () => {
         <WrapperBox>
           <FormControl component="form" onSubmit={handleSubmit(onSubmit)}>
             <QuestionWrapper>
+              {surveyData && isWrongResponse(surveyData)} ? (<div>Error</div>) :
+              (
               <CustomFormLabel id="question-1">
                 Jak bardzo nie lubię customowego stylowania w Material UI?
               </CustomFormLabel>
@@ -176,6 +196,7 @@ const Survey = () => {
                   </RadioGroup>
                 )}
               />
+              )
             </QuestionWrapper>
             <Button variant="contained" type="submit">
               Submit

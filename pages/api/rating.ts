@@ -1,12 +1,9 @@
 import { validate } from "class-validator";
 import type { NextApiRequest, NextApiResponse } from "next";
-<<<<<<< HEAD
-import { IRatingRequest, IRatingResponse } from "../../types/Rate";
-=======
 import { IUserMailResponse } from "../../types/Mail";
 import { endpoints } from "../../data/endpoints";
 import { EmailRating } from "../../api/Email";
->>>>>>> main
+import { IRatingResponse } from "../../types/Rate";
 
 export default async function handler(
   req: NextApiRequest,
