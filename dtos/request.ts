@@ -7,7 +7,7 @@ import {
   IsArray,
   ValidateNested,
 } from "class-validator";
-import { ISubmitRequest, IVote } from "../types/Survey";
+import { IQuestionnaireRequest, ISubmitRequest, IVote } from "../types/Survey";
 
 export class Vote implements IVote {
   @IsString()
@@ -27,4 +27,9 @@ export class SubmitRequest implements ISubmitRequest {
   @IsArray()
   @ValidateNested({ each: true })
   votes!: Vote[];
+}
+
+export class Questionnaire implements IQuestionnaireRequest {
+  @IsString()
+  idQuestionnaire!: string;
 }
