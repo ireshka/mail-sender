@@ -1,4 +1,3 @@
-import { Type } from "class-transformer";
 import {
   IsString,
   IsEmail,
@@ -8,7 +7,6 @@ import {
   IsArray,
   ValidateNested,
 } from "class-validator";
-
 import { ISurveyRequest, ISubmitRequest, IVote } from "../types/Survey";
 
 export class Vote implements IVote {
@@ -28,11 +26,10 @@ export class SubmitRequest implements ISubmitRequest {
 
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => Vote)
   votes!: Vote[];
 }
 
-export class Survey implements ISurveyRequest {
+export class Questionnaire implements ISurveyRequest {
   @IsString()
   idSurvey!: string;
 }
