@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "dependencies": {
     "@emotion/react": "^11.8.2",
@@ -16,7 +18,10 @@
     "@sendgrid/mail": "^7.6.2",
     "@types/yup": "^0.29.13",
     "axios": "^0.26.1",
+    "babel-jest": "^27.5.1",
+    "class-validator": "^0.13.2",
     "formik": "^2.2.9",
+    "jest": "^27.5.1",
     "lodash": "^4.17.21",
     "mjml": "^4.12.0",
     "mjml-react": "^2.0.5",
@@ -25,6 +30,7 @@
     "nodemailer-sendgrid": "^1.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "ts-jest": "^27.1.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

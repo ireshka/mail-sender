@@ -9,16 +9,14 @@ import {
   Typography,
   Alert,
 } from "@mui/material";
+import Image from "next/image";
 import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
-import Image from "next/image";
-import surveyImage from "./../public/survey.png";
 import {
   IUserMailResponse,
   IUserMailSuccessfullResponse,
-  IUserMailErrorResponse,
 } from "../types/Mail";
 import { SendMail } from "../api/sendMail";
 
@@ -44,6 +42,7 @@ const Home: NextPage = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      //TODO: refactor possibility? - await / async syntax
       new SendMail()
         .send({ mail: values.email })
         .then((res: IUserMailResponse) => {
@@ -58,7 +57,7 @@ const Home: NextPage = () => {
     <Container maxWidth="sm">
       <Paper
         sx={{
-          padding: "10px",
+          padding: "16px",
           width: "100%",
           maxWidth: "400px",
           display: "block",
@@ -71,6 +70,13 @@ const Home: NextPage = () => {
           overflowY: "auto",
         }}
       >
+        <Image
+          src="/mailbox.png"
+          alt=""
+          width={816}
+          height={654}
+          layout="responsive"
+        />
         <Box sx={{ marginBottom: "2rem" }}>
           <Image
             src={surveyImage}

@@ -10,8 +10,22 @@ export interface IUserMailErrorResponse {
   errorMessage: string;
 }
 
-export type IUserMailResponse = IUserMailSuccessfullResponse | IUserMailErrorResponse;
+export type IUserMailResponse =
+  | IUserMailSuccessfullResponse
+  | IUserMailErrorResponse;
 
 export interface IUserMailSend {
   send(request: IUserMailRequest): Promise<IUserMailResponse>;
+}
+
+export interface IUserRatingRequest {
+  mail: string;
+  rating: string;
+}
+
+export type IUserRatingResponse = IUserMailResponse;
+
+export interface IEmailRating {
+  mail: string;
+  rating: number;
 }

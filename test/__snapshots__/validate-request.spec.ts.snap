@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fails with incorrect answer 1`] = `
+Array [
+  ValidationError {
+    "children": Array [
+      ValidationError {
+        "children": Array [
+          ValidationError {
+            "children": Array [],
+            "constraints": Object {
+              "isString": "id must be a string",
+            },
+            "property": "id",
+            "target": Vote {},
+            "value": undefined,
+          },
+          ValidationError {
+            "children": Array [],
+            "constraints": Object {
+              "isInt": "vote must be an integer number",
+              "max": "vote must not be greater than 5",
+              "min": "vote must not be less than 1",
+            },
+            "property": "vote",
+            "target": Vote {},
+            "value": undefined,
+          },
+        ],
+        "property": "0",
+        "target": Array [
+          Vote {},
+        ],
+        "value": Vote {},
+      },
+    ],
+    "property": "votes",
+    "target": SubmitRequest {
+      "email": "mihau@gmail.com",
+      "votes": Array [
+        Vote {},
+      ],
+    },
+    "value": Array [
+      Vote {},
+    ],
+  },
+]
+`;

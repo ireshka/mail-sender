@@ -1,12 +1,14 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import {
   IUserMailErrorResponse,
   IUserMailSuccessfullResponse,
   IUserMailRequest,
   IUserMailResponse,
   IUserMailSend,
+  IUserRatingRequest,
+  IUserRatingResponse
 } from "../types/Mail";
-import { Endpoints } from "../types/Endpoints.enum";
+import { endpoints } from "../data/endpoints";
 
 const getErrorObject = (errorMessage: string): IUserMailErrorResponse => ({
   errorMessage,
@@ -21,16 +23,14 @@ const isErrorResponse = (
 export class SendMail implements IUserMailSend {
   async send(request: IUserMailRequest): Promise<IUserMailResponse> {
     try {
-      const resp = await axios.post(Endpoints.SEND, request);
-      const data = resp.data as IUserMailSuccessfullResponse;
-      return data;
+      const resp = await axios.post(endpoints.SEND, request);
+      return resp.data as IUserMailSuccessfullResponse;
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const responseMessage = (isErrorResponse(err.response?.data) ? err.response?.data.errorMessage : 'Worse error even') as string;
         return getErrorObject(responseMessage);
       } else {
-
-        return getErrorObject('We are looking for your error');
+        return getErrorObject("Sth goes wrong");
       }
     }
   }
