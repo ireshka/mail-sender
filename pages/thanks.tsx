@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { SendMail } from "../api/sendMail";
 import { styled } from "@mui/system";
 import Image from "next/image";
 import { ExpectedQuery, WrongQuery } from '../types/Rating';
@@ -18,8 +17,8 @@ type Props = ExpectedQuery | WrongQuery;
 
 const isValidQuery = (query: ParsedUrlQuery): query is ExpectedQuery => {
   return (
-    (query as ParsedUrlQuery).mail !== undefined &&
-    (query as ParsedUrlQuery).rating !== undefined
+    query.mail !== undefined &&
+    query.rating !== undefined
   );
 };
 
