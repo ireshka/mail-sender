@@ -11,7 +11,9 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { styled } from "@mui/system";
 import Image from "next/image";
+import Link from "next/link";
 import { ExpectedQuery, WrongQuery } from '../types/Rating';
+import { endpoints } from '../data/endpoints'
 
 type Props = ExpectedQuery | WrongQuery;
 
@@ -47,6 +49,7 @@ const Thanks = ({
   const WrapperBox = styled(Box)`
     padding: 16px;
   `;
+  const surveyLink = `/survey?mail=${mail}`;
 
   return (
     <Container maxWidth="md">
@@ -89,7 +92,9 @@ const Thanks = ({
             <Grid item xs={12} sm={6}>
               {rating !== null ? (
                 <Box>
-                  <Typography variant="h5" sx={{pb: 5}}>Thank for your rating!</Typography>
+                  <Typography variant="h5" sx={{ pb: 5 }}>
+                    Thank for your rating!
+                  </Typography>
                   <Typography variant="h6">
                     You gave us: <strong>{rating}</strong> stars.
                   </Typography>
@@ -99,6 +104,11 @@ const Thanks = ({
                   The old gnomes ate your answer. Please rate us again.
                 </Alert>
               )}
+              <Grid item xs={12} sx={{marginTop: '24px'}}>
+                <Link href={surveyLink}>
+                  <a>Longer Survey, please?</a>
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
         </WrapperBox>
