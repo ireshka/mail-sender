@@ -14,10 +14,7 @@ import type { NextPage } from "next";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
-import {
-  IUserMailResponse,
-  IUserMailSuccessfullResponse,
-} from "../types/Mail";
+import { IUserMailResponse, IUserMailSuccessfullResponse } from "../types/Mail";
 import { SendMail } from "../api/sendMail";
 
 const isSuccessfullResponse = (
@@ -59,7 +56,7 @@ const Home: NextPage = () => {
         sx={{
           padding: "16px",
           width: "100%",
-          maxWidth: "400px",
+          maxWidth: "350px",
           display: "block",
           margin: "0 auto",
 
@@ -78,16 +75,10 @@ const Home: NextPage = () => {
           layout="responsive"
         />
         <Box sx={{ marginBottom: "2rem" }}>
-          <Image
-            src={surveyImage}
-            alt="Picture of the author"
-            width={500}
-            height={500}
-          />
-          <Typography variant="h4" component="h1" textAlign="center">
+          <Typography variant="h4" component="h1">
             Get your survey
           </Typography>
-          <Typography variant="subtitle1" textAlign="center">
+          <Typography variant="subtitle1">
             Give us your mail and you can give us stars
           </Typography>
         </Box>
